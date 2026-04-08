@@ -9,7 +9,6 @@ import css from '../components/movies/Movies.module.css'
 
 const MediaPage: FC<{type:MediaType}> = ({ type }) => {
     const { filter, genreId, actorId, rating, year, page: reduxPage } = useAppSelector(state => state.movies);
-
     const dispatch = useAppDispatch();
     const [query, setQuery] = useSearchParams({ page: '1' });
 
@@ -18,12 +17,8 @@ const MediaPage: FC<{type:MediaType}> = ({ type }) => {
 
     useEffect(() => {
         if (!query.get('page')) setQuery({ page: '1' });
-        // dispatch(movieActions.getAll({type, params: { page, genreId, actorId, rating, year }}));
         dispatch(
-            movieActions.getAll({
-                type,
-                params: {
-                    page,
+            movieActions.getAll({type, params: {page,
                     genreId: genreId ?? undefined,
                     actorId: actorId ?? undefined,
                     rating: rating ?? undefined,
