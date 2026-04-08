@@ -1,7 +1,6 @@
 import  {useEffect, useState} from 'react';
-import {BackgroundImage} from "../components/background/BackgroundImage";
 import {movieService} from "../services";
-import {Slider} from "../components";
+import {BackgroundImage, Slider} from "../components";
 import type {IMovie} from "../interfaces";
 
 

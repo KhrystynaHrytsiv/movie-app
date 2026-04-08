@@ -1,5 +1,5 @@
 import {createHashRouter} from "react-router-dom";
-import {Home, MainPage, MovieDetailsPage, Movies, Player, TVShows} from "../pages";
+import {Home, MainPage, MovieDetailsPage, Movies, PlayerPage, TVShows} from "../pages";
 import {movieService} from "../services";
 import { Search } from "../components";
 
@@ -13,7 +13,7 @@ const router = createHashRouter([
             {path: 'tv', element:<TVShows/>},
             {path: 'tv/:genreName', element:<TVShows/>},
             {path: 'search', element:<Search/>},
-            {path: ':type/:id/player', element:<Player/>}
+            {path: ':type/:id/player', element:<PlayerPage/>}
         ]}
 ]
 );
