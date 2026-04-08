@@ -2,7 +2,8 @@ import {createAsyncThunk, createSlice, isPending, isRejected, type PayloadAction
 import type {IImage, IMovie, IPagination, IParams, IActor, IPerson, IVideo} from "../../interfaces";
 import {type MediaList, type MediaType, movieService} from "../../services";
 import {AxiosError} from "axios";
-import type {RootState} from "../store";
+import type {RootState} from "../store.ts";
+
 
 interface IState {
     movies:IMovie[],
@@ -72,15 +73,16 @@ const getMovieByType = createAsyncThunk<IMovie[],{type:MediaType, list:MediaList
     }
 )
 
+
 export const selectMoviesByPage = (page: number) => (state: RootState) => {
     return state.movies.searchCache[page] ?? [];
 };
 const search = createAsyncThunk<
-    { movies: IMovie[]; page: number; total_pages: number }, { query: string; page: number }, { state: RootState }>(
+    {movies: IMovie[]; page: number; total_pages: number}, {query: string; page: number}>(
     'movieSlice/search',
     async ({ query, page }, { rejectWithValue, getState }) => {
         try {
-            const state = getState();
+            const state = getState() as RootState;
             const shownIds = new Set(Object.values(state.movies.searchCache).flat().map(m => m.id));
             let currentPage = page;
             let collected: IMovie[] = [];
@@ -106,6 +108,7 @@ const search = createAsyncThunk<
         }
     }
 );
+
 const getVideo = createAsyncThunk<IVideo[], {id:number, type:MediaType}>(
     'movieSlice/getVideo',
     async ({id, type}, {rejectWithValue})=>{
@@ -234,7 +237,7 @@ const movieSlice = createSlice({
             })
 
 });
-const {reducer:movieReducer, actions} = movieSlice;
-const movieActions = {...actions, getAll, search, getVideo, getImages, getActors, getMovieByType, getActorsInfo}
 
-export {movieReducer, movieActions}
+const movieActions = {...movieSlice.actions, getAll, search, getVideo, getImages, getActors, getMovieByType, getActorsInfo};
+
+export {movieSlice, movieActions}
