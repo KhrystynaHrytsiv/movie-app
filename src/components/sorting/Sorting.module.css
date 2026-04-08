@@ -1,0 +1,47 @@
+.container {
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    cursor: pointer;
+}
+.genres, .years, .rating{
+    text-align: center;
+    width: 25%;
+    font-size: clamp(12px, 2.2em, 18px);
+    background-color: rgba(0,0,0, 0.5);
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+option{
+    background-color: rgba(0,0,0, 0.6);
+
+}
+.reset{
+    width: 15%;
+    text-align: center;
+    font-size: clamp(12px, 2.2em, 18px);
+    border-radius: 10px;
+    cursor: pointer;
+}
+@media (max-width: 900px) and (min-width: 551px) {
+    .genres, .years, .rating, .reset {
+        font-size: clamp(10px, 2.2em, 14px);
+    }
+}
+@media (max-width: 550px) {
+    .container {
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+    }
+    .genres, .years, .rating, .reset {
+        width: 80%;
+        font-size: clamp(10px, 2.2em, 14px);
+    }
+
+}
