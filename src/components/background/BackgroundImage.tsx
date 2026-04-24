@@ -22,6 +22,9 @@ const BackgroundImage = () => {
             const {data} = await apiService.get(`${baseURL}/configuration`);
             dispatch(movieActions.setBackImage(data.images.secure_base_url + 'original'))
         } catch (e) {
+            if (!movies.length) {
+                return <div>Loading...</div>;
+            }
         }
     }
 
@@ -39,8 +42,8 @@ const BackgroundImage = () => {
     return (
         <section className={css.section}>
             <div className={css.wrapper}>
-            {movies.map(movie =>
-                <div className={css.bannerItem} style={{ transform : `translateX(-${currentImage * 100}%)`}}>
+            {movies && movies.map(movie =>
+                <div key={movie.id} className={css.bannerItem} style={{ transform : `translateX(-${currentImage * 100}%)`}}>
                     <img src={backImages + movie.backdrop_path} alt={movie.title} className={css.image}/>
 
                     <div className={css.buttonsWrapper}>
