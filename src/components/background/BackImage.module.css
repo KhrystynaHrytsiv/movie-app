@@ -70,7 +70,7 @@
 
 .details{
     position: absolute;
-    bottom: 10px;
+    bottom: 40px;
     width: 100%;
     max-width: 26rem;
     padding: 0 0.75rem;
@@ -111,10 +111,11 @@
     cursor: pointer;
     position: relative;
     z-index: 20;
+    border: none;
 }
 
 .playButton:hover {
-    background: linear-gradient(to left, #b91c1c, #f97316);
+    background: linear-gradient(to left,#11998e, #38ef7d);
     transform: scale(1.05);
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
@@ -122,5 +123,6 @@
     .details{
         width: 95%;
         left: 0;
+        bottom: 20px;
     }
 }

@@ -12,11 +12,6 @@ const BackgroundImage = () => {
     const [currentImage, setCurrentImage] = useState(0);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        dispatch(movieActions.getMovieByType({type: 'movie', list: 'popular'}))
-        fetchBackDropData()
-    }, [dispatch]);
-
     const fetchBackDropData = async ()=>{
         try{
             const {data} = await apiService.get(`${baseURL}/configuration`);
@@ -25,8 +20,14 @@ const BackgroundImage = () => {
             if (!movies.length) {
                 return <div>Loading...</div>;
             }
+            console.log(e)
         }
     }
+    useEffect(() => {
+        dispatch(movieActions.getMovieByType({type: 'movie', list: 'popular'}))
+        fetchBackDropData()
+    }, [dispatch]);
+
 
     const handleLeft =() =>{
         if(currentImage > 0){
