@@ -1,8 +1,9 @@
 import {createAsyncThunk, createSlice, isPending, isRejected, type PayloadAction} from "@reduxjs/toolkit";
 import type {IImage, IMovie, IPagination, IParams, IActor, IPerson, IVideo} from "../../interfaces";
 import {type MediaList, type MediaType, movieService} from "../../services";
-import {AxiosError} from "axios";
+
 import type {RootState} from "../store.ts";
+import type {AxiosError} from "axios";
 
 
 interface IState {
@@ -65,7 +66,7 @@ const getMovieByType = createAsyncThunk<IMovie[],{type:MediaType, list:MediaList
     'movieSlice/getByType',
     async ({type, list}, {rejectWithValue})=>{
         try {
-            const {data} =await movieService.getMovieByType(type, list);
+            const {data} = await movieService.getMovieByType(type, list);
             return data.results
         } catch (e) {
             return rejectWithValue(e)
@@ -85,7 +86,7 @@ const search = createAsyncThunk<
             const state = getState() as RootState;
             const shownIds = new Set(Object.values(state.movies.searchCache).flat().map(m => m.id));
             let currentPage = page;
-            let collected: IMovie[] = [];
+            const collected: IMovie[] = [];
             let totalPages = 1;
 
             while (collected.length < 20) {
@@ -226,7 +227,7 @@ const movieSlice = createSlice({
             })
 
             .addCase(getVideo.rejected, (state, action)=>{
-                state.errors = action.payload as any
+                state.errors = action.payload as null
             })
             .addMatcher(isPending(getAll, search, getImages, getActors, getMovieByType, getVideo, getActorsInfo), state => {
                 state.loading =true;

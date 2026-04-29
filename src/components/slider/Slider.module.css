@@ -3,7 +3,7 @@
     flex-direction: column;
     position: relative;
     overflow-x: hidden;
-    h1{
+    h2{
         margin-left: 50px;
     }
 }

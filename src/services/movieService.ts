@@ -13,7 +13,7 @@ const movieService = {
     person: async (id: number):IRes<IPerson> => await apiService.get(urls.person(id)),
 
     getAll: (type:MediaType,{page, genreId, actorId, rating, year,}:IParams): IRes<IPagination<IMovie>> => {
-        const params: any = {
+        const params = {
             page,
             ...(genreId && {with_genres: genreId}),
             ...(actorId && {with_cast: actorId}),

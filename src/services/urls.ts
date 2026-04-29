@@ -1,6 +1,6 @@
-const baseURL = import.meta.env.VITE_BASE_URL
+const baseURL = 'https://api.themoviedb.org/3'
 export type MediaType = 'movie' | 'tv';
-export type MediaList = | 'popular' | 'top_rated' | 'upcoming' | 'now_playing' | 'on_the_air' | 'airing_today';
+export type MediaList = 'popular' | 'top_rated' | 'upcoming' | 'now_playing' | 'on_the_air' | 'airing_today';
 
 const configuration = '/configuration'
 const discover = (type:MediaType):string => `/discover/${type}`;

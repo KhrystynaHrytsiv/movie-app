@@ -11,12 +11,20 @@ const Home = () => {
     const [upcoming, setUpcoming] = useState<IMovie[]>([]);
 
     useEffect(() => {
-        movieService.getMovieByType('movie','now_playing').then(({data})=>setNowPlaying(data.results))
-        movieService.getMovieByType('tv','popular').then(({data})=>setPopular(data.results))
-        movieService.getMovieByType('movie','top_rated').then(({data})=> setTopRated(data.results))
-        movieService.getMovieByType('tv','top_rated').then(({data})=> setUpcoming(data.results))
-
+        movieService.getMovieByType('movie','now_playing')
+            .then(({data})=>setNowPlaying(data.results))
+            .catch(err => console.log(err));
+        movieService.getMovieByType('tv','popular')
+            .then(({data})=>setPopular(data.results))
+            .catch(err => console.log(err));
+        movieService.getMovieByType('movie','top_rated')
+            .then(({data})=> setTopRated(data.results))
+            .catch(err => console.log(err));
+        movieService.getMovieByType('tv','top_rated')
+            .then(({data})=> setUpcoming(data.results))
+            .catch(err => console.log(err));
     }, []);
+
     return (
         <div>
             <BackgroundImage/>

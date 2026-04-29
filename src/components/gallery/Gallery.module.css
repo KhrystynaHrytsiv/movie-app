@@ -1,38 +1,35 @@
 .gallery {
-    display: flex;
-    height: 200px;
-    width: 100%;
-    align-items: center;
-    position: relative;
     overflow: hidden;
-
-    .arrowR {
-        width: 50px;
-        height: 25%;
-        background-color: rgba(80, 75, 94, 0.5);
-        position: absolute;
-        right: 10px;
-        z-index: 60;
-        cursor: pointer;
-        border-radius: 50%;
-    }
-
-    .arrowL {
-        width: 50px;
-        height: 25%;
-        background-color: rgba(80, 75, 94, 0.5);
-        position: absolute;
-        left: 10px;
-        z-index: 60;
-        cursor: pointer;
-        border-radius: 50%;
-    }
+    display: flex;
+    align-items: center;
+    height: 200px;
+}
+.wrapper{
+    width: 100%;
+    position: relative;
+}
+.arrowR, .arrowL {
+    font-size: 40px !important;
+    background-color: rgba(80, 75, 94, 0.5);
+    position: absolute;
+    z-index: 999;
+    cursor: pointer;
+    border-radius: 50%;
+    top: 55px;
+}
+.arrowR{
+    right: 10px;
+}
+.arrowL {
+    left: 10px;
 }
 .inner {
     display: flex;
+    transition: transform 0.4s ease;
+    will-change: transform;
     gap: 10px;
-    transition: transform 0.3s ease-in-out;
 }
+
 .imageContainer {
     width: 200px;
     height: 150px;
@@ -42,7 +39,7 @@
 }
 
 .imageContainer:hover {
-    z-index: 50;
+    z-index: 30;
 }
 .images {
     width: 100%;
